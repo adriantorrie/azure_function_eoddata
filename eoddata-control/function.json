@@ -1,7 +1,7 @@
 {
   "bindings": [
     {
-      "name": "eoddata_control_payload",
+      "name": "input",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "eoddata-control",

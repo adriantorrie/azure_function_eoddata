@@ -15,7 +15,7 @@ ws = 'http://ws.eoddata.com/data.asmx'
 xmlns = 'http://ws.eoddata.com/Data'
 
 # read the queue message and write to stdout
-payload_in = open(os.environ['eoddata_login_payload']).read()
+payload_in = open(os.environ['input']).read()
 message = "Python script processed queue message '{0}'".format(payload_in)
 print(message)
 
@@ -64,5 +64,5 @@ except Exception as e:
 
 
 # Output the response to the client
-payload_out = open(os.environ['eoddata_control_payload'], 'w')
+payload_out = open(os.environ['output'], 'w')
 payload_out.write(return_data)

@@ -1,7 +1,7 @@
 {
   "bindings": [
     {
-      "name": "eoddata_login_payload",
+      "name": "input",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "eoddata-login",
@@ -9,7 +9,7 @@
     },
     {
       "type": "queue",
-      "name": "eoddata_control_payload",
+      "name": "output",
       "direction": "out",
       "queueName": "eoddata-control",
       "connection": "money_STORAGE"
