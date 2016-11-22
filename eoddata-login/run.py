@@ -23,8 +23,8 @@ print(message)
 session = r.Session()
 url = '/'.join((ws, 'Login'))
 kwargs = {
-    'Username': open(os.environ['eoddata_username']).read(),
-    'Password': open(os.environ['eoddata_password']).read()}
+    'Username': os.environ['eoddata_username'],
+    'Password': os.environ['eoddata_password']}
 return_data = None
 start = time.time()
 
