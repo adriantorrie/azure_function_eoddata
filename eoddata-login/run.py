@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import xml.etree.cElementTree as etree
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
@@ -20,7 +21,7 @@ print(message)
 
 # making requests through a session
 session = r.Session()
-url = '/'.join((WS, 'Login'))
+url = '/'.join((ws, 'Login'))
 kwargs = {
     'Username': open(os.environ['eoddata_username']).read(),
     'Password': open(os.environ['eoddata_password']).read()}
