@@ -5,7 +5,7 @@ username = os.environ['eoddata_username']
 password = os.environ['eoddata_password']
 
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'src')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
 
 import time
