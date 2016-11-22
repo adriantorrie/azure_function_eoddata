@@ -1,12 +1,11 @@
-""""This module holds the logic for eoddata-login""""
-
 import json
 import os
-import requests
+import sys
 import xml.etree.cElementTree as etree
+import requests as r
 
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
 
 # webservice url
 ws = 'http://ws.eoddata.com/data.asmx'
@@ -21,7 +20,7 @@ print(message)
 
 # making requests through a session
 session = r.Session()
-url = '/'.join((ws, 'Login'))
+url = '/'.join((WS, 'Login'))
 kwargs = {
     'Username': open(os.environ['eoddata_username']).read(),
     'Password': open(os.environ['eoddata_password']).read()}
