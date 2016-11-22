@@ -1,35 +1,35 @@
 import os
-import sys
-import time
-import xml.etree.cElementTree as etree
+payload_in = open(os.environ['input']).read()
+payload_out = open(os.environ['output'], 'w')
+username = os.environ['eoddata_username']
+password = os.environ['eoddata_password']
 
+import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
 
-import requests as r
-
-# webservice url
-ws = 'http://ws.eoddata.com/data.asmx'
-
-# returning xml responses prefixed with this namespace
-xmlns = 'http://ws.eoddata.com/Data'
-
-# read the queue message and write to stdout
-payload_in = open(os.environ['input']).read()
-message = "Python script processed queue message '{0}'".format(payload_in)
-print(message)
-
-# making requests through a session
-session = r.Session()
-url = '/'.join((ws, 'Login'))
-kwargs = {
-    'Username': os.environ['eoddata_username'],
-    'Password': os.environ['eoddata_password']}
-return_data = None
-start = time.time()
+import time
+import xml.etree.cElementTree as etree
+import requests
+import eoddata
 
 try:
-    
+    # webservice call
+    ws_call = 'Login'
+
+    # vars to control making a login request through a session and place
+    # a token in return_data
+    url = '/'.join((eoddata.WS_URL, ws_call))
+    kwargs = {
+        'Username': username,
+        'Password': password}
+    session = requests.Session()
+
+    # read the ingress queue message and write to stdout
+    message = "Python script processed queue message '{0}'".format(payload_in)
+    print(message)
+
+    start = time.time()
     resp = session.get(url, params=kwargs)
     root = etree.fromstring(resp.content)
     resp_message = root.get('Message')
@@ -55,14 +55,11 @@ try:
             suffix_resp,
             int(time.time() - start))
 
+        # write to stdout the outcome of the successful login request
+        print(message)
 
-        return_data = token
-        print (message)
+        # Output the response to the client
+        payload_out.write(token)
 
 except Exception as e:
     raise e
-
-
-# Output the response to the client
-payload_out = open(os.environ['output'], 'w')
-payload_out.write(return_data)
