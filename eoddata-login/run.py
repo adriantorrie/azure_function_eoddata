@@ -1,11 +1,11 @@
-import json
 import os
 import sys
 import xml.etree.cElementTree as etree
-import requests as r
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
+
+import requests as r
 
 # webservice url
 ws = 'http://ws.eoddata.com/data.asmx'
@@ -55,7 +55,7 @@ try:
             int(time.time() - start))
 
 
-        return_data = {"Token": token}
+        return_data = token
         print (message)
 
 except Exception as e:
