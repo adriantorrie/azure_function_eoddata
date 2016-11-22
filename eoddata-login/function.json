@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "eoddata_login_payload",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "eoddata-login",
+      "connection": "money_STORAGE"
+    },
+    {
+      "type": "queue",
+      "name": "eoddata_control_payload",
+      "direction": "out",
+      "queueName": "eoddata-control",
+      "connection": "money_STORAGE"
+    }
+  ],
+  "disabled": false
+}
